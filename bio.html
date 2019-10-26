@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Basic AJAX</title>
+	<link rel="stylesheet" href="bio.css">
+</head>
+
+<body>
+	<div class="data">
+		<p class="info">This is a paragraph.</p>
+		<p class="tooltip">Tooltip: Additional Information about Paragraph 1</p>
+	</div>
+	<div class="data">
+		<p class="info">This is a paragraph.</p>
+		<p class="tooltip">Tooltip: Additional Information about Paragraph 2</p>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			tooltips('info');
+			function tooltips(dataClassName) {
+				$('.'+dataClassName).on('mouseenter', mouseEnterEvent).on('mouseout', mouseOutEvent).on('mousemove', mouseMoveEvent);
+			}
+
+			function mouseEnterEvent() {
+				//.find finds a child of the parent
+				 $(this).parent().find('.tooltip').css({visibility: 'visible'});
+			}
+
+			function mouseOutEvent() {
+				 $(this).parent().find('.tooltip').css({visibility: 'hidden'});
+			}
+
+			function mouseMoveEvent() {
+				$(this).parent().find('.tooltip').css({left: event.pageX, top: event.pageY});
+			}
+		});
+	</script>
+</body>
+
+</html>
